@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* define variables */
+:root {
+  --body-padding-x: 1rem;
+}
+
+body {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  padding-left: var(--body-padding-x);
+  padding-right: var(--body-padding-x);
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* layout the main contents */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* when viewport width > 1204px */
+@media (min-width: 1204px) {
+  .container {
+    width: 1204px; /* Set your desired fixed width */
+    max-width: 1204px; /* Ensure container doesn't exceed this width */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-left: var(--body-padding-x);
+  margin-right: var(--body-padding-x);
+  /* padding-top: var(--body-padding-x); */
+  /* padding-bottom: var(--body-padding-x); */
+  /* height: 48px; */
+  width: calc(100% - (2 * var(--body-padding-x)));
+  z-index: 50;
+  /* background-color: "FFFFFF"; */
+  /* background-color: lightgray; */
+  background-color: white;
+}
+
+.navbar-item {
+  font-weight: bold;
+}
+
+.navbar-item:hover {
+  color: lightblue;
+  text-decoration: underline;
+}
+
+/* navbar on the side */
+/* fixed top-0 left-0 z-50 w-3/4 h-screen pt-2 pl-4 bg-gray-200 md:hidden */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 75vw;
+  height: 100vh;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  background-color: gray;
+}
+
+.section-title {
+  color: black;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+main {
+  /* padding-top: 2rem; */
+  flex: 1;
+}
+
+footer {
+  padding: 10px 0;
+  background-color: white;
+  /* background-color: lightgray; */
+}
+
+.scroll-container {
+  height: 400px;
+  overflow-y: auto;
+  /* border: 1px solid #ccc; */
+}
