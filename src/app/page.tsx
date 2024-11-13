@@ -1,20 +1,23 @@
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "@nextui-org/react";
 import Image from "next/image";
 import { apiClient } from "@/api/api-server";
-import { NextUIProvider } from "@nextui-org/react";
 import SubscribeForm from "@/components/SubscribeForm";
+import { ScrollShadow } from "@nextui-org/react"; 
+import { Divider } from "@nextui-org/react";
+import CardPublication from "@/components/CardPublication";
+import CardTalk from "@/components/CardTalk";
+import CardProject from "@/components/CardProject";
 
 export default async function Home() {
   const dataBio = await apiClient.getUserBio();
   const dataNews = await apiClient.getNews();
   const baseURL = process.env.BACKEND_API_URL;
 
-  // console.log(dataNews[1].date);
-
   return (
       <>
-      <div className="lg:flex my-5 lg:space-x-5">
-        <div className="md:w-full lg:w-3/5">
+      <div className="my-5 lg:flex lg:space-x-5">
+        <div id="bio" className="md:w-full lg:w-3/5">
           <div className="sm:flex">
             <Image
               src={`${baseURL}${dataBio.photo}`}
@@ -29,6 +32,9 @@ export default async function Home() {
                 {dataBio.position}<br/>
                 {dataBio.institution}<br/>
                 {dataBio.address.city}, {dataBio.address.state? dataBio.address.state : dataBio.address.province}, {dataBio.address.country}<br/>
+                Email: <Link
+                  href={`mailto:${dataBio.email}`}>{dataBio.email}
+                </Link>
               </p>
               <ul className="flex sm:ms-4 space-x-2 items-center">
                 {
@@ -64,7 +70,9 @@ export default async function Home() {
         <div className="md:w-full lg:w-2/5 flex flex-col justify-between">
           <div>
             <h1 className="section-title">News</h1>
-            <div className="scroll-container">
+            <Divider />
+            <ScrollShadow className={`w-full h-[400px]`}>
+            <div>
               {
                 dataNews.map(
                   ({ id, date, content, url }: { id: string, date: {year: number, month: number, day:number}, content: string, url: string }) => (
@@ -76,17 +84,45 @@ export default async function Home() {
                 )
               }
             </div>
+            </ScrollShadow>
           </div>
           <div className="pt-2">
             <SubscribeForm baseURL={baseURL} />
           </div>
         </div>
       </div>
-      <div>
-        <h2 className="section-title">Featured</h2>
-        <p>x</p>
-        <p>x</p>
-        <p>x</p>
+      <div className="py-4">
+        <div className="flex justify-between">
+          <p className="section-title">Publications</p>
+          <p>View all</p>
+        </div>
+        <Divider />
+        <CardPublication />
+      </div>
+      <div className="py-4">
+        <div className="flex justify-between">
+          <p className="section-title">Talks</p>
+          <p className="hidden">View all</p>
+        </div>
+        <Divider />
+        <div className="gap-2 grid grid-cols-1 py-2 sm:grid-cols-2 md:grid-cols-4">
+          <CardTalk />
+          <CardTalk />
+          <CardTalk />
+        </div>
+      </div>
+      <div className="py-4">
+        <div className="flex justify-between">
+          <p className="section-title">Projects</p>
+          <p className="hidden">View all</p>
+        </div>
+        <Divider />
+        <div className="gap-2 grid grid-cols-1 py-2 sm:grid-cols-2 md:grid-cols-4">
+          <CardProject />
+          <CardProject />
+          <CardProject />
+          <CardProject />
+        </div>
       </div>
     </>
   );

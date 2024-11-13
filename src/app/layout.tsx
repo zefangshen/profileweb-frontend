@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
+import CustomNavbar from "@/components/CustomNavbar";
 import Footer from "@/components/Footer";
 import { apiClient } from "@/api/api-server";
 import "@/styles/globals.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "Zefang",
-  description: "Zefang's personal website",
+  title: "Profile",
+  description: "A profile website",
 };
 
 export default async function RootLayout({
@@ -22,8 +22,8 @@ export default async function RootLayout({
       <body>
         <Providers>
           <div className="layout">
-            <Navbar data={layoutData} />
-            <main className="pt-20 sm:pt-12">{children}</main>
+            <CustomNavbar data={ layoutData } />
+            <main className="pt-8 sm:pt-12">{children}</main>
             <Footer data={layoutData} />
           </div>
         </Providers>

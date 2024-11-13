@@ -1,7 +1,5 @@
 const BACKEND_API_URL=process.env.BACKEND_API_URL
 
-export 
-
 async function fetchAPI(endpoint: string, options = {}) {
   const res = await fetch(`${BACKEND_API_URL}${endpoint}`, options);
   if (!res.ok) {

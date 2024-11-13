@@ -59,3 +59,34 @@
         />
   - Improvements:
     - dynamic meta data title.
+
+      <NavbarContent>
+        <NavbarItem className="hidden">
+          <p>ThemeToggle</p>
+        </NavbarItem>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+      </NavbarContent>
+      <NavbarMenu>
+        {
+          menuItems.map((item, index) => (
+              <NavbarItem key={`${item}-${index}`}>
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="#"
+                  size="lg"
+                >
+                  {item}
+                </Link>
+              </NavbarItem>
+            )
+          )
+        }
+      </NavbarMenu>
+
+- Versions
+  - 0.0.1, switch to NextUI 
+

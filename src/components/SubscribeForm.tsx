@@ -31,17 +31,17 @@ export default function SubscribeForm({ baseURL }) {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor='email'>
-        Get Zefang's latest news to your inbox:
+        Get the latest news to your inbox:
       </label>
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-1'>
         <Input
           type="email"
           label="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
+          size="sm"
         />
-        <Button type="submit" color="primary">Subscribe</Button>
+        <Button type="submit" color="primary" size="lg" radius="sm">Subscribe</Button>
       </div>
     </form>
   )
